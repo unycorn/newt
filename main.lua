@@ -9,16 +9,30 @@ function love.load()
   TileW, TileH = 16, 16
   TilesetW, TilesetH = Tileset:getWidth(), Tileset:getHeight()
   
-  Quads = {
-    love.graphics.newQuad(0, 0, TileW, TileH, TilesetW, TilesetH), -- Grass
-    love.graphics.newQuad(16, 0, TileW, TileH, TilesetW, TilesetH), -- TallGrass
-    love.graphics.newQuad(32, 0, TileW, TileH, TilesetW, TilesetH), -- Flowers
+  Quads = {}
+  local quadInfo = {
+    {0, 0}   -- Grass
+    {16, 0}  -- Tall Grass
+    {32, 0}  -- Flowers
+    {48, 0}  -- Mossy Rock
+    {0, 16}  -- Rock
   }
   
+  for i,info in ipairs(quadInfo) do
+    -- info[1] = x, info[2] = y
+    Quads[i] = love.graphics.newQuad(info[1], info[2], TileW, TileH, tilesetW, tilesetH)
+  end
+  
   TileTable = {
-    { 1,3,1 },
-    { 3,2,3 },
-    { 1,3,1 }
+    { 1,1,1,1,1,1,1,1,1 },
+    { 1,5,5,5,3,1,1,1,1 },
+    { 1,5,3,1,5,3,1,1,1 },
+    { 1,5,3,1,1,5,3,1,1 },
+    { 1,5,3,1,1,5,3,1,1 },
+    { 1,5,3,1,1,5,3,1,1 },
+    { 1,5,3,1,5,3,1,1,1 },
+    { 1,5,5,5,3,1,1,1,1 },
+    { 1,1,1,1,1,1,1,1,1 }
   }
   
 end
